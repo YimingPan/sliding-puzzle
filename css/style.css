@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    background-color: #333;
+}
+
+.topnav .container {
+    padding: 10px;
+}
+
+.topnav span {
+    color: #f2f2f2;
+}
+
