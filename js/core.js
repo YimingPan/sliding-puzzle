@@ -11,15 +11,26 @@ function init() {
     for (var i = 0; i < grid.length; i++) {
         grid[i] = new Array(size);
     }
-    for (var i = 0; i < size; i++) {
-        for (var j = 0; j < size; j++) {
-            grid[i][j] = {x: i, y: j};
-            if (i == size-1 && j == size-1) {
-                emptyBlock = {x: i, y: j};
-            }
-        }
-    }
-    // Random shuffle 2D array `grid`
+    // Hard coded initialization
+    grid[0][0] = {x: 1, y: 0};
+    grid[0][1] = {x: 2, y: 0};
+    grid[0][2] = {x: 0, y: 2};
+    grid[1][0] = {x: 2, y: 2};
+    grid[1][1] = {x: 1, y: 1};
+    grid[1][2] = {x: 2, y: 1};
+    grid[2][0] = {x: 1, y: 2};
+    grid[2][1] = {x: 0, y: 1};
+    grid[2][2] = {x: 0, y: 0};
+    emptyBlock = {x: 1, y: 0};
+    // for (var i = 0; i < size; i++) {
+    //     for (var j = 0; j < size; j++) {
+    //         grid[i][j] = {x: i, y: j};
+    //         if (i == size-1 && j == size-1) {
+    //             emptyBlock = {x: i, y: j};
+    //         }
+    //     }
+    // }
+    // TODO: Random shuffle 2D array `grid`
     for (var i = 0; i < grid.length; i++) {
         for (var j = 0; j < grid[i].length; j++) {
             drawTile(i, j);
@@ -68,8 +79,8 @@ canvas.addEventListener("click", function(evt) {
     mousePos = getMousePos(evt);
     var xid = Math.floor(mousePos.x / block_size);
     var yid = Math.floor(mousePos.y / block_size);
-    // console.log(xid + ", " + yid);
-    // console.log("empty: (" + emptyBlock.x + "," + emptyBlock.y + ")");
+    console.log(xid + ", " + yid);
+    console.log("empty: (" + emptyBlock.x + "," + emptyBlock.y + ")");
 
     if (manhattanDistance({x: xid, y: yid}, emptyBlock) == 1)
         slideTile(xid, yid, emptyBlock.x, emptyBlock.y);
