@@ -31,7 +31,9 @@ function Puzzle(canvas) {
         this.drawTile(i, j);
         this.drawTile(this.emptyRow, this.emptyCol);
         if (this.is_solved()) {
-            console.log("Awesome!");
+            this.emptyRow = -1;
+            this.emptyCol = -1;
+            this.drawTile(this.size-1, this.size-1);
         }
     }
 
