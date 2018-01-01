@@ -1,6 +1,3 @@
-var canvas = document.getElementById("game");
-var puzzle = new Puzzle(canvas);
-
 function getMousePos(evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -14,6 +11,11 @@ function manhattanDistance(x1, y1, x2, y2) {
 }
 
 
+var canvas = document.getElementById("game");
+var puzzle = new Puzzle(canvas);
+var restart_btn = document.getElementById("restart-btn");
+var ng_btn = document.getElementById("ng-btn");
+
 canvas.addEventListener("load", puzzle.init());
 canvas.addEventListener("click", function(evt) {
     mousePos = getMousePos(evt);
@@ -22,4 +24,10 @@ canvas.addEventListener("click", function(evt) {
 
     if (manhattanDistance(row, col, puzzle.emptyRow, puzzle.emptyCol) == 1)
         puzzle.slideTile(row, col);
+});
+restart_btn.addEventListener("click", function(evt) {
+    puzzle.restart();
+});
+ng_btn.addEventListener("click", function(evt) {
+    puzzle.init();
 });

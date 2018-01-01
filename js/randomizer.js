@@ -35,7 +35,6 @@ function initPuzzle(rows, cols) {
             grid[0][1] = tmp;
         }
     }
-    console.log(countInversions(grid));
     return grid;
 }
 

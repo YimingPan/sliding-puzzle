@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+body, td, a, p {
+    font-family: arial, sans-serif;
+}
+
 /* Style the top navigation bar */
 .topnav {
     background-color: #333;
@@ -15,3 +19,28 @@ body {
     color: #f2f2f2;
 }
 
+.game .container {
+    width: 100%;
+    text-align: center;
+}
+
+canvas {
+    /* If display is not set to inline, text-align property of
+    .canvas-container has no effect. */
+    display: inline;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 0px 32px;
+    margin: 11px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 36px;
+    line-height: 27px;
+}

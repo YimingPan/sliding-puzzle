@@ -4,6 +4,7 @@ function Puzzle(canvas) {
     this.game_area.font = "30px Arial";
     this.size = 3; // default: 3*3 puzzle
     this.block_size = canvas.width / this.size;
+    this.initialState = [];
 
     this.drawTile = function(i, j) {
         var w = j * this.block_size;
@@ -35,6 +36,32 @@ function Puzzle(canvas) {
     this.init = function() {
         // Random shuffle 2D array `grid`
         this.grid = initPuzzle(this.size, this.size);
+
+        // TODO: Try rewriting the array copy procedure as a function
+        for (var i = 0; i < this.grid.length; i++)
+            this.initialState[i] = this.grid[i].slice();
+
+        // Locate empty tile
+        // TODO: Avoid writing the following code again in this.restart()
+        for (var i = 0; i < this.grid.length; i++) {
+            for (var j = 0; j < this.grid[i].length; j++) {
+                if (this.grid[i][j] == this.size * this.size) {
+                    this.emptyRow = i;
+                    this.emptyCol = j;
+                }
+            }
+        }
+        for (var i = 0; i < this.grid.length; i++) {
+            for (var j = 0; j < this.grid[i].length; j++) {
+                this.drawTile(i, j);
+            }
+        }
+    }
+
+    this.restart = function() {
+        for (var i = 0; i < this.initialState.length; i++)
+            this.grid[i] = this.initialState[i].slice();
+
         // Locate empty tile
         for (var i = 0; i < this.grid.length; i++) {
             for (var j = 0; j < this.grid[i].length; j++) {
