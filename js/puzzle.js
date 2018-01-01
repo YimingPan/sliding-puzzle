@@ -5,11 +5,6 @@ function Puzzle(canvas) {
     this.size = 3; // default: 3*3 puzzle
     this.block_size = canvas.width / this.size;
 
-    this.grid = new Array(this.size);
-    for (var i = 0; i < this.grid.length; i++) {
-        this.grid[i] = new Array(this.size);
-    }
-
     this.drawTile = function(i, j) {
         var w = j * this.block_size;
         var h = i * this.block_size;
@@ -37,28 +32,18 @@ function Puzzle(canvas) {
         }
     }
 
-    this.randomize = function() {
-        // TODO: Generate a random start phase.
-    }
-
     this.init = function() {
-        // Hard coded initialization
-        this.grid = [[4, 7 ,3],
-                     [9, 5, 8],
-                     [6, 2, 1]];
-        this.emptyRow = 1;
-        this.emptyCol = 0;
-        // the position of empty block (r,c)
-        
-        // for (var i = 0; i < size; i++) {
-        //     for (var j = 0; j < size; j++) {
-        //         grid[i][j] = {x: i, y: j};
-        //         if (i == size-1 && j == size-1) {
-        //             emptyBlock = {x: i, y: j};
-        //         }
-        //     }
-        // }
-        // TODO: Random shuffle 2D array `grid`
+        // Random shuffle 2D array `grid`
+        this.grid = initPuzzle(this.size, this.size);
+        // Locate empty tile
+        for (var i = 0; i < this.grid.length; i++) {
+            for (var j = 0; j < this.grid[i].length; j++) {
+                if (this.grid[i][j] == this.size * this.size) {
+                    this.emptyRow = i;
+                    this.emptyCol = j;
+                }
+            }
+        }
         for (var i = 0; i < this.grid.length; i++) {
             for (var j = 0; j < this.grid[i].length; j++) {
                 this.drawTile(i, j);
